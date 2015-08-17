@@ -1,0 +1,85 @@
+{
+    function html_inline(html_class, content){
+        var text = '';
+        text += '<span class="';
+        text += html_class;
+        text += '">';
+        text += content;
+        text += '</span>';
+        return text;
+    }
+    function html_block(html_class, content){
+        var text = '';
+        text += '<p class="';
+        text += html_class;
+        text += '">';
+        text += content;
+        text += '</p>';
+        return text;
+    }
+    function html_control(control_type){
+        return html_inline("control-chars", control_type);
+    }
+
+}
+
+
+start
+  = c:(block+) n:(newlines_or_not) { return c.join("") + n}
+
+
+block
+  = verse
+  / verse_star
+  / chorus
+
+
+verse
+  = c:(newline newlines block_content) { return c[0] + c[1] + html_block('verse', c[2])}
+
+verse_star
+  = c:(newline block_content) { return c[0] + html_block('verse_star', c[1])}
+
+chorus
+  = c:(newlines_or_not chorus_start block_content chorus_end) { return c[0] + html_block('chorus', html_control(c[1]) + c[2] + html_control(c[3]))}
+
+chorus_start
+  = c:("{start_of_chorus}" newlines?) { return c.join("")}
+  / c:("{soc}" newlines?) { return c.join("")}
+
+chorus_end
+  = c:("{end_of_chorus}" newline) { return c.join("")}
+  / c:("{eoc}" newline) { return c.join("")}
+
+block_content
+  = c:(line_content+) { return c.join("")}
+
+line_content
+  = c:(line_chars newline) { return c.join("")}
+
+line_chars
+  = c:(line_char+) { return c.join("")}
+
+line_char
+  = safe_char
+  / chord
+
+safe_chars
+  = c:(safe_char+) { return c.join("")}
+
+safe_char
+  = [^\r\n{}\[\]]
+  
+chord
+  = c:("[" safe_chars "]") { return html_inline('chord', html_control(c[0]) + c[1] + html_control(c[2]))}
+
+newline
+  = "\r\n" {return "\n"}
+  / "\r" {return "\n"}
+  / "\n"
+
+newlines_or_not
+  = newlines
+  / ""
+newlines
+  = c:(newline+) { return c.join("")}

@@ -1,0 +1,93 @@
+div.chordpro-song,
+textarea.chordpro-song{
+    width: 35em;
+    margin:0;
+    padding: 0 0 0 1em;
+    display: block;
+}
+
+textarea.chordpro-song{
+    background-color: transparent;
+    font-family: inherit;
+    border:1px transparent solid;
+    resize: none;
+}
+div.chordpro-song{
+    border:1px #ddd solid;
+    white-space: pre-wrap;
+    min-height: 5em;
+    counter-reset: verse-counter;
+    position: absolute;
+    z-index: -1;
+    color:transparent;
+}
+div.chordpro-song p{
+    margin-top:0;
+    margin-bottom:0;
+    margin-left: -1em;
+    padding-left: 1em;
+    position: relative;
+}
+p.verse{
+    background-color:#cfc;
+}
+p.verse:before {
+    content: counter(verse-counter) ".";
+    counter-increment: verse-counter;
+    position:absolute;
+    left:0;
+    top:0;
+    opacity: 0.5;
+    color:#000;
+}
+p.verse_star{
+    background-color:#dfffc0;
+}
+div.chordpro-song p.chorus{
+    background-color: #efe;
+    border-left: .2em black solid;
+    margin-left: -.5em;
+    padding-left: .3em;
+}
+
+
+/* Show the type of paragraph (chorus & co.) */
+p:after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.5;
+    font-family: monospace;
+    color:#000;
+}
+p.verse:after{
+    content:"Verse";
+}
+p.verse_star:after{
+    content:"Verse*";
+}
+p.chorus:after{
+    content:"Chorus";
+}
+
+/* Caracters that do not belong to the text */
+span.chord,
+span.control-chars{
+    background-color: #eee;
+}
+
+/* Emphasize error location */
+span.error-line{
+    background-color: #FF9C9C;
+    position:relative;
+}
+span.error-line:before{
+    content:"⚠";
+    position: absolute;
+    left:-1em;
+    color:red;
+    font-weight: bold;
+}
+span.error-char{
+    border-bottom:red 2px solid;
+}
