@@ -4,7 +4,6 @@ textarea.chordpro-song{
     margin:0;
     padding: 0 0 0 1em;
     display: block;
-    font-size:100%;
 }
 
 textarea.chordpro-song{
@@ -12,6 +11,8 @@ textarea.chordpro-song{
     font-family: inherit;
     border:1px transparent solid;
     resize: none;
+    font-size:100%;
+    overflow: auto;
 }
 div.chordpro-song{
     border:1px #ddd solid;
