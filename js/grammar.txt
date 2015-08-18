@@ -100,10 +100,10 @@ safe_char_or_chord
     = safe_char
     / chord
 
-safe_chars_or_sharp
-  = c:(safe_char_or_sharp+) { return c.join("")}
+chord_name
+  = c:(chord_char+) { return c.join("")}
 
-safe_char_or_sharp
+chord_char
   = safe_char
   / "#"
 
@@ -114,7 +114,7 @@ safe_char
   = [^\\\n\r{}$\[\]~]
 
 chord
-  = c:("[" safe_chars_or_sharp "]") { return html_inline_with_controls('chord', c)}
+  = c:("[" chord_name "]") { return html_inline_with_controls('chord', c)}
 
 echo
   = c:("{echo: " safe_chars_or_chord "}") { return html_inline_with_controls('echo', c)}
