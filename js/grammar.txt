@@ -97,17 +97,24 @@ safe_chars_or_chord
   = c:(safe_char_or_chord+) { return c.join("")}
 
 safe_char_or_chord
+    = safe_char
+    / chord
+
+safe_chars_or_sharp
+  = c:(safe_char_or_sharp+) { return c.join("")}
+
+safe_char_or_sharp
   = safe_char
-  / chord
+  / "#"
 
 safe_chars
   = c:(safe_char+) { return c.join("")}
 
 safe_char
-  = [^\r\n{}\[\]]
+  = [^\r\n{}\[\]#]
 
 chord
-  = c:("[" safe_chars "]") { return html_inline_with_controls('chord', c)}
+  = c:("[" safe_chars_or_sharp "]") { return html_inline_with_controls('chord', c)}
 
 echo
   = c:("{echo: " safe_chars_or_chord "}") { return html_inline_with_controls('echo', c)}
