@@ -76,7 +76,7 @@ block_content
 
 line_content
   = c:(line_chars newline) { return c.join("")}
-  / guitar_comment_line
+  / s:(" "*) c:guitar_comment_line { return s.join("") + c}
 
 line_chars
   = c:(line_char+) { return c.join("")}
