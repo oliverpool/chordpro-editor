@@ -51,6 +51,12 @@ div.chordpro-song p.chorus{
     margin-left: -.5em;
     padding-left: .3em;
 }
+div.chordpro-song p.bridge{
+    background-color: #efe;
+    border-left: .2em black dashed;
+    margin-left: -.5em;
+    padding-left: .3em;
+}
 
 
 /* Show the type of paragraph (chorus & co.) */
@@ -70,6 +76,9 @@ p.verse_star:after{
 }
 p.chorus:after{
     content:"Chorus";
+}
+p.bridge:after{
+    content:"Bridge";
 }
 
 /* Caracters that do not belong to the text */
