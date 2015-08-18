@@ -8,6 +8,11 @@
         text += '</span>';
         return text;
     }
+    function html_inline_with_controls(html_class, c) {
+        var content = html_control(c[0]) + c[1] + html_control(c[2]);
+        return html_inline(html_class, content);
+    }
+
     function html_block(html_class, content){
         var text = '';
         text += '<p class="';
@@ -87,6 +92,13 @@ line_char
   / repeat
   / echo
 
+safe_chars_or_chord
+  = c:(safe_char_or_chord+) { return c.join("")}
+
+safe_char_or_chord
+  = safe_char
+  / chord
+
 safe_chars
   = c:(safe_char+) { return c.join("")}
 
@@ -94,13 +106,16 @@ safe_char
   = [^\r\n{}\[\]]
 
 chord
-  = c:("[" safe_chars "]") { return html_inline('chord', html_control(c[0]) + c[1] + html_control(c[2]))}
+  = c:("[" safe_chars "]") { return html_inline_with_controls('chord', c)}
 
 echo
-  = c:("{echo: " safe_chars "}") { return html_inline('echo', html_control(c[0]) + c[1] + html_control(c[2]))}
+  = c:("{echo: " safe_chars_or_chord "}") { return html_inline_with_controls('echo', c)}
 
 repeat
-  = c:("{repeat: " [0-9]+ "}") { return html_inline('repeat', html_control(c[0]) + c[1].join("") + html_control(c[2]))}
+  = c:("{repeat: " digits "}") { return html_inline_with_controls('repeat', c)}
+
+digits
+  = c:[0-9]+ {return c.join("")}
 
 newline
   = "\r\n" {return "\n"}
