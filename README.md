@@ -7,3 +7,5 @@ The concept is simple: a `div` is added behind the `textarea` and backgrounds ar
 This approach prevents complicated `contenteditable` tweaks (especially when dealing with shortcuts and markup).
 
 Currently it only support `chorus`, `verse` and `verse*` (verse preceded by only one newline). An extended support is planned (to be later integrated into the project [patanet](https://github.com/patacrep/patanet) project).
+
+It uses the awesome [PEG.js](http://pegjs.org/) library.
