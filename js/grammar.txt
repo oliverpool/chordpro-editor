@@ -72,6 +72,7 @@ line_chars
 line_char
   = safe_char
   / chord
+  / repeat
 
 safe_chars
   = c:(safe_char+) { return c.join("")}
@@ -81,6 +82,9 @@ safe_char
   
 chord
   = c:("[" safe_chars "]") { return html_inline('chord', html_control(c[0]) + c[1] + html_control(c[2]))}
+
+repeat
+  = c:("{repeat: " [0-9]+ "}") { return html_control(c[0]) + c[1].join("") + html_control(c[2])}
 
 newline
   = "\r\n" {return "\n"}
