@@ -33,7 +33,6 @@ block
   / verse_star
   / chorus
   / bridge
-  / guitar_comment_block
   / comment_block
 
 
@@ -66,8 +65,8 @@ bridge_end
   / c:("{eob}" newline) { return c.join("")}
 
 
-guitar_comment_block
-  = c:(newlines_or_not "{guitar_comment:" line_chars "}" newline) { return c[0] + html_control(c[1]) + c[2] + html_control(c[3]) + c[4]}
+guitar_comment_line
+  = c:("{guitar_comment:" line_chars "}" newline) { return html_control(c[0]) + c[1] + html_control(c[2]) + c[3]}
 
 comment_block
   = c:(newlines_or_not "{comment:" line_chars "}" newline) { return c[0] + html_control(c[1]) + c[2] + html_control(c[3]) + c[4]}
@@ -77,6 +76,7 @@ block_content
 
 line_content
   = c:(line_chars newline) { return c.join("")}
+  / guitar_comment_line
 
 line_chars
   = c:(line_char+) { return c.join("")}
