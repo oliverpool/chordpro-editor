@@ -51,7 +51,7 @@ chorus
   = c:(newlines_or_not chorus_start block_content chorus_end) { return c[0] + html_block('chorus', html_control(c[1]) + c[2] + html_control(c[3]))}
 
 chorus_start
-  = c:("{start_of_chorus}" newlines?) { return c.join("")}
+  = c:("{start_of_chorus}" newline?) { return c.join("")}
   / c:("{soc}" newlines?) { return c.join("")}
 
 chorus_end
@@ -62,7 +62,7 @@ bridge
   = c:(newlines_or_not bridge_start block_content bridge_end) { return c[0] + html_block('bridge', html_control(c[1]) + c[2] + html_control(c[3]))}
 
 bridge_start
-  = c:("{start_of_bridge}" newlines?) { return c.join("")}
+  = c:("{start_of_bridge}" newline?) { return c.join("")}
   / c:("{sob}" newlines?) { return c.join("")}
 
 bridge_end
@@ -129,5 +129,6 @@ newline
 newlines_or_not
   = newlines
   / ""
+
 newlines
   = c:(newline+) { return c.join("")}
