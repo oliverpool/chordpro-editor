@@ -91,6 +91,7 @@ line_char
   / chord
   / repeat
   / echo
+  / partition
 
 safe_chars_or_chord
   = c:(safe_char_or_chord+) { return c.join("")}
@@ -110,6 +111,9 @@ chord
 
 echo
   = c:("{echo: " safe_chars_or_chord "}") { return html_inline_with_controls('echo', c)}
+
+partition
+  = c:("{partition: " safe_chars "}") { return html_inline_with_controls('partition', c)}
 
 repeat
   = c:("{repeat: " digits "}") { return html_inline_with_controls('repeat', c)}
