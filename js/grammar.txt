@@ -32,6 +32,8 @@ block
   = verse
   / verse_star
   / chorus
+  / guitar_comment_block
+  / comment_block
 
 
 verse
@@ -50,6 +52,13 @@ chorus_start
 chorus_end
   = c:("{end_of_chorus}" newline) { return c.join("")}
   / c:("{eoc}" newline) { return c.join("")}
+  
+  
+guitar_comment_block
+  = c:(newlines_or_not "{guitar_comment:" line_chars "}" newline) { return c[0] + html_control(c[1]) + c[2] + html_control(c[3]) + c[4]}
+
+comment_block
+  = c:(newlines_or_not "{comment:" line_chars "}" newline) { return c[0] + html_control(c[1]) + c[2] + html_control(c[3]) + c[4]}
 
 block_content
   = c:(line_content+) { return c.join("")}
