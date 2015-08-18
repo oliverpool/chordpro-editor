@@ -96,7 +96,7 @@ chord
   = c:("[" safe_chars "]") { return html_inline('chord', html_control(c[0]) + c[1] + html_control(c[2]))}
 
 repeat
-  = c:("{repeat: " [0-9]+ "}") { return html_control(c[0]) + c[1].join("") + html_control(c[2])}
+  = c:("{repeat: " [0-9]+ "}") { return html_inline('repeat', html_control(c[0]) + c[1].join("") + html_control(c[2]))}
 
 newline
   = "\r\n" {return "\n"}
