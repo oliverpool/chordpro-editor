@@ -111,7 +111,7 @@ safe_chars
   = c:(safe_char+) { return c.join("")}
 
 safe_char
-  = [^\\\n\r{}$\[\]~]
+  = [^\\\n\r{}$\[\]~#]
 
 chord
   = c:("[" chord_name "]") { return html_inline_with_controls('chord', c)}
