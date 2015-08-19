@@ -129,7 +129,10 @@ safe_char
   = [^\\\n\r{}$\[\]~#]
 
 chord
-  = c:("[" chord_name "]") { return html_inline_with_controls('chord', c)}
+  = c:single_chord+ { return html_inline('chord', c.join(""))}
+
+single_chord
+  = c:("[" chord_name "]") { return surrounded_with_controls(c)}
 
 echo
   = c:("{echo: " safe_chars_or_chord "}") { return html_inline_with_controls('echo', c)}
