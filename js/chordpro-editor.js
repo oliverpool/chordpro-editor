@@ -150,6 +150,26 @@ ChordProEditor = {
         var current_href = document.getElementById("editor_css").getAttribute('href');
         var new_href = current_href.replace(/[^\/]+\.css$/, active + ".css");
         document.getElementById("editor_css").setAttribute('href', new_href);
+        if(set_visual){
+            this.prevent_chord_overlapping();
+        }
+    },
+    prevent_chord_overlapping: function(){
+        var chords = document.querySelectorAll('div > p > span.chord');
+        var line = -1;
+        var offsetX = 0;
+        for (var i = 0; i < chords.length; i++) {
+            if(chords[i].offsetWidth > 0){
+                return setTimeout(this.prevent_chord_overlapping, 500);
+            }
+            var rect = chords[i].getBoundingClientRect();
+            if(rect.top == line && rect.left < offsetX){
+                chords[i].style.marginLeft = (offsetX - rect.left) + "px";
+                rect = chords[i].getBoundingClientRect();
+            }
+            line = rect.top;
+            offsetX = rect.left + chords[i].scrollWidth;
+        }
     }
 }
 
