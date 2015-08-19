@@ -128,6 +128,7 @@ ChordProEditor = {
     parse_grammar: function(text){
         this.peg = PEG.buildParser(text);
         this.initialize_markups(this.songs);
+        this.prevent_chord_overlapping();
     },
 
     // Method to load a plain text file
