@@ -57,6 +57,15 @@ div.chordpro-song p.bridge{
 
 
 /* Caracters that do not belong to the text */
+span.repeat{
+    font-style: italic;
+}
+span.repeat:before{
+    content: "(×";
+}
+span.repeat:after{
+    content: ")";
+}
 span.chord{
     color: green;
     line-height: 200%;
