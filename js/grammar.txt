@@ -38,6 +38,7 @@ start
 
 block
   = comment_block
+  / guitar_comment_block
   / code_comment_block
   / verse
   / verse_star
@@ -77,6 +78,9 @@ bridge_end
 
 comment_block
   = c:(newlines_or_not "{comment: " line_chars "}" newline &newline) { return c.shift() + html_inline_with_controls('comment', c) + c[3]}
+
+guitar_comment_block
+  = c:(newlines_or_not "{guitar_comment: " line_chars "}" newline &newline) { return c.shift() + html_inline_with_controls('guitar_comment', c) + c[3]}
 
 code_comment_block
   = c:(newlines code_comment_line+) { return c[0] + c[1].join("")}
