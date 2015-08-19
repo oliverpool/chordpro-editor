@@ -21,6 +21,7 @@ div.chordpro-song p{
     margin-left: -1em;
     padding-left: 1em;
     position: relative;
+    line-height: 150%;
 }
 p.verse{
     /*background-color:#cfc;*/
@@ -62,7 +63,7 @@ span.chord{
     vertical-align: bottom;
     display: inline-block;
     position: relative;
-    top: -7px;
+    top: -8px;
     font-weight: normal;
     width: 0;
 }
