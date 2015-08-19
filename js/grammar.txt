@@ -9,7 +9,7 @@
         return text;
     }
     function html_inline_with_controls(html_class, c) {
-        var content = html_control(c[0]) + c[1] + html_control(c[2]);
+        var content = surrounded_with_controls(c);
         return html_inline(html_class, content);
     }
 
@@ -24,6 +24,9 @@
     }
     function html_control(control_type){
         return html_inline("control-chars", control_type);
+    }
+    function surrounded_with_controls(c){
+        return html_control(c[0]) + c[1] + html_control(c[2]);
     }
 
 }
