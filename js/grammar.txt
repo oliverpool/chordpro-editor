@@ -76,7 +76,7 @@ bridge_end
 
 
 comment_block
-  = c:(newlines_or_not "{comment:" line_chars "}" newline &newline) { return c.shift() + html_inline_with_controls('comment', c) + c[3]}
+  = c:(newlines_or_not "{comment: " line_chars "}" newline &newline) { return c.shift() + html_inline_with_controls('comment', c) + c[3]}
 
 code_comment_block
   = c:(newlines code_comment_line+) { return c[0] + c[1].join("")}
@@ -96,10 +96,10 @@ line_chars
   = c:(line_char+) { return c.join("")}
 
 guitar_comment_line
-  = c:("{guitar_comment:" line_chars "}" newline) { return html_inline_with_controls('guitar_comment', c) + c[3]}
+  = c:("{guitar_comment: " line_chars "}" newline) { return html_inline_with_controls('guitar_comment', c) + c[3]}
 
 comment_line
-  = c:("{comment:" line_chars "}" newline) { return html_inline_with_controls('comment', c) + c[3]}
+  = c:("{comment: " line_chars "}" newline) { return html_inline_with_controls('comment', c) + c[3]}
 
 line_char
   = safe_char
