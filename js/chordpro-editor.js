@@ -153,6 +153,12 @@ ChordProEditor = {
         document.getElementById("editor_css").setAttribute('href', new_href);
         if(set_visual){
             this.prevent_chord_overlapping();
+        } else {
+            var length = this.songs.length;
+            for (var i = 0; i < length; i++) {
+                this.update_markup(this.songs[i]);
+            }
+
         }
     },
     prevent_chord_overlapping: function(){
