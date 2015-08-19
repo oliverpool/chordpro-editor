@@ -23,7 +23,7 @@ div.chordpro-song p{
     position: relative;
 }
 p.verse{
-    background-color:#cfc;
+    /*background-color:#cfc;*/
 }
 p.verse:before {
     content: counter(verse-counter) ".";
@@ -35,19 +35,19 @@ p.verse:before {
     color:#333;
 }
 p.verse_star{
-    background-color:#dfffc0;
+    /*background-color:#dfffc0;*/
 }
 p.chorus{
     font-weight: bold;
 }
 div.chordpro-song p.chorus{
-    background-color: #efe;
+    /*background-color: #efe;*/
     border-left: .2em black solid;
     margin-left: -.5em;
     padding-left: .3em;
 }
 div.chordpro-song p.bridge{
-    background-color: #efe;
+    /*background-color: #efe;*/
     border-left: .2em black dashed;
     margin-left: -.5em;
     padding-left: .3em;
