@@ -37,11 +37,11 @@ start
 
 
 block
-  = verse
+  = comment_block
+  / verse
   / verse_star
   / chorus
   / bridge
-  / comment_block
 
 
 verse
@@ -73,11 +73,9 @@ bridge_end
   / c:("{eob}" newline) { return c.join("")}
 
 
-guitar_comment_line
-  = c:("{guitar_comment:" line_chars "}" newline) { return html_inline_with_controls('guitar_comment', c) + c[3]}
 
 comment_block
-  = c:(newlines_or_not "{comment:" line_chars "}" newline) { return c.shift() + html_inline_with_controls('comment', c) + c.pop()}
+  = c:(newlines_or_not "{comment:" line_chars "}" newline &newline) { return c.shift() + html_inline_with_controls('comment', c) + c[3]}
 
 
 block_content
@@ -86,9 +84,16 @@ block_content
 line_content
   = c:(line_chars newline) { return c.join("")}
   / s:(" "*) c:guitar_comment_line { return s.join("") + c}
+  / comment_line
 
 line_chars
   = c:(line_char+) { return c.join("")}
+
+guitar_comment_line
+  = c:("{guitar_comment:" line_chars "}" newline) { return html_inline_with_controls('guitar_comment', c) + c[3]}
+
+comment_line
+  = c:("{comment:" line_chars "}" newline) { return html_inline_with_controls('comment', c) + c[3]}
 
 line_char
   = safe_char
