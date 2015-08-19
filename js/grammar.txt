@@ -51,7 +51,7 @@ verse_star
   = c:(newline block_content) { return c[0] + html_block('verse_star', c[1])}
 
 chorus
-  = c:(newlines_or_not chorus_start block_content chorus_end) { return c[0] + html_block('chorus', html_control(c[1]) + c[2] + html_control(c[3]))}
+  = c:(newlines_or_not chorus_start block_content chorus_end) { return c.shift() + html_block('chorus', surrounded_with_controls(c))}
 
 chorus_start
   = c:("{start_of_chorus}" newline?) { return c.join("")}
@@ -74,10 +74,11 @@ bridge_end
 
 
 guitar_comment_line
-  = c:("{guitar_comment:" line_chars "}" newline) { return html_control(c[0]) + c[1] + html_control(c[2]) + c[3]}
+  = c:("{guitar_comment:" line_chars "}" newline) { return html_inline_with_controls('guitar_comment', c) + c[3]}
 
 comment_block
-  = c:(newlines_or_not "{comment:" line_chars "}" newline) { return c[0] + html_control(c[1]) + c[2] + html_control(c[3]) + c[4]}
+  = c:(newlines_or_not "{comment:" line_chars "}" newline) { return c.shift() + html_inline_with_controls('comment', c) + c.pop()}
+
 
 block_content
   = c:(line_content+) { return c.join("")}
