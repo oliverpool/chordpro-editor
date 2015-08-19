@@ -84,7 +84,8 @@ guitar_comment_block
   = c:(newlines_or_not "{guitar_comment: " line_chars "}" newline &newline) { return c.shift() + html_inline_with_controls('guitar_comment', c) + c[3]}
 
 transposition_block
-  = c:(newlines "{transposition: " signed_digits "}" newline &newline) { return c.shift() + html_inline_with_controls('transposition', c) + c[3]}
+  = c:(newlines "{transposition: " digits "}" newline &newline) { return c.shift() + html_inline_with_controls('transposition positive', c) + c[3]}
+  / c:(newlines "{transposition: -" digits "}" newline &newline) { return c.shift() + html_inline_with_controls('transposition negative', c) + c[3]}
 
 code_comment_block
   = c:(newlines code_comment_line+) { return c[0] + c[1].join("")}
@@ -153,10 +154,6 @@ repeat
 
 digits
   = c:[0-9]+ {return c.join("")}
-
-signed_digits
-  = c:("-"? digits) {return c.join("")}
-  / "+" c:digits {return c}
 
 newline
   = "\r\n" {return "\n"}

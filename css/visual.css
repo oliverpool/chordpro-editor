@@ -57,6 +57,21 @@ div.chordpro-song p.bridge{
 
 
 /* Caracters that do not belong to the text */
+span.transposition{
+    font-style: italic;
+}
+span.transposition:before{
+    content: "Transposition: ";
+}
+span.transposition:after{
+    font-size: 120%;
+}
+span.transposition.positive:after{
+    content: "⇑";
+}
+span.transposition.negative:after{
+    content: "⇓";
+}
 span.repeat{
     font-style: italic;
 }
