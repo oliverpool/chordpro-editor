@@ -38,6 +38,7 @@ start
 
 block
   = comment_block
+  / code_comment_block
   / verse
   / verse_star
   / chorus
@@ -77,6 +78,11 @@ bridge_end
 comment_block
   = c:(newlines_or_not "{comment:" line_chars "}" newline &newline) { return c.shift() + html_inline_with_controls('comment', c) + c[3]}
 
+code_comment_block
+  = c:(newlines code_comment_line+) { return c[0] + c[1].join("")}
+
+code_comment_line
+  = c:("#" no_newline newline) { return html_block('code-comment', c.join(""))}
 
 block_content
   = c:(line_content+) { return c.join("")}
@@ -148,3 +154,6 @@ newlines_or_not
 
 newlines
   = c:(newline+) { return c.join("")}
+
+no_newline
+  = c:[^\n]* {return c.join("")}

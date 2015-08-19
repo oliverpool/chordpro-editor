@@ -87,6 +87,14 @@ span.control-chars{
     background-color: #eee;
 }
 
+p.code-comment{
+    background-color: #eee;
+}
+p.code-comment:after{
+    content:"#";
+    color:black;
+}
+
 /* Emphasize error location */
 span.error-line{
     background-color: #FF9C9C;
