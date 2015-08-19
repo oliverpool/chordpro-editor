@@ -99,6 +99,7 @@ span.chord{
     top: -8px;
     font-weight: normal;
     width: 0;
+    white-space: nowrap;
 }
 span.chord .control-chars:not(:first-of-type){
     display: inline;
