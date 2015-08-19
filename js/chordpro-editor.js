@@ -156,7 +156,7 @@ ChordProEditor = {
         }
     },
     prevent_chord_overlapping: function(){
-        var chords = document.querySelectorAll('div > p span.chord');
+        var chords = document.querySelectorAll('div span.chord');
         var line = -1;
         var offsetX = 0;
         for (var i = 0; i < chords.length; i++) {
@@ -168,6 +168,7 @@ ChordProEditor = {
                 chords[i].style.marginLeft = (offsetX - rect.left) + "px";
                 rect = chords[i].getBoundingClientRect();
             }
+            //console.log(chords[i].textContent + ": " + rect.left + " w" + chords[i].scrollWidth + " o " + offsetX + " l" + rect.top);
             line = rect.top;
             offsetX = rect.left + chords[i].scrollWidth;
         }
