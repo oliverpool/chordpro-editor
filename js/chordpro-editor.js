@@ -156,7 +156,7 @@ ChordProEditor = {
         }
     },
     prevent_chord_overlapping: function(){
-        var chords = document.querySelectorAll('div > p > span.chord');
+        var chords = document.querySelectorAll('div > p span.chord');
         var line = -1;
         var offsetX = 0;
         for (var i = 0; i < chords.length; i++) {
