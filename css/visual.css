@@ -1,27 +1,19 @@
-div.chordpro-song,
-textarea.chordpro-song{
-    width: 35em;
+div.chordpro-song{
     margin:0;
     padding: 0 0 0 1em;
     display: block;
 }
 
 textarea.chordpro-song{
-    background-color: transparent;
-    font-family: inherit;
-    border:1px transparent solid;
-    resize: none;
-    font-size:100%;
-    overflow: auto;
+    visibility: hidden;
+    position: absolute;
 }
 div.chordpro-song{
-    border:1px #ddd solid;
+    border:none;
     white-space: pre-wrap;
     min-height: 5em;
     counter-reset: verse-counter;
     position: absolute;
-    z-index: -1;
-    color:transparent;
 }
 div.chordpro-song p{
     margin-top:0;
@@ -36,14 +28,17 @@ p.verse{
 p.verse:before {
     content: counter(verse-counter) ".";
     counter-increment: verse-counter;
-    position:absolute;
-    left:0;
-    top:0;
-    opacity: 0.5;
-    color:#000;
+    display: inline-block;
+    margin-left:-1em;
+    margin-right: 1em;
+    width: 0;
+    color:#333;
 }
 p.verse_star{
     background-color:#dfffc0;
+}
+p.chorus{
+    font-weight: bold;
 }
 div.chordpro-song p.chorus{
     background-color: #efe;
@@ -59,40 +54,26 @@ div.chordpro-song p.bridge{
 }
 
 
-/* Show the type of paragraph (chorus & co.) */
-p:after{
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0.5;
-    font-family: monospace;
-    color:#000;
-}
-p.verse:after{
-    content:"Verse";
-}
-p.verse_star:after{
-    content:"Verse*";
-}
-p.chorus:after{
-    content:"Chorus";
-}
-p.bridge:after{
-    content:"Bridge";
-}
 
 /* Caracters that do not belong to the text */
-span.chord,
-span.control-chars{
-    background-color: #eee;
+span.chord{
+    color: green;
+    line-height: 200%;
+    vertical-align: bottom;
+    display: inline-block;
+    position: relative;
+    top: -7px;
+    font-weight: normal;
+    width: 0;
 }
-
+span.chord .control-chars:not(:first-of-type){
+    display: inline;
+    visibility: hidden;
+    width: 50px;
+}
+span.control-chars,
 p.code-comment{
-    background-color: #eee;
-}
-p.code-comment:after{
-    content:"#";
-    color:black;
+    display: none;
 }
 
 /* Emphasize error location */
@@ -112,6 +93,7 @@ span.error-char{
 }
 
 
-button.switcher.editor{
+
+button.switcher.visual{
     display: none;
 }

@@ -3,9 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>ChordPro Live Editor</title>
-        <link rel="stylesheet" href="css/editor.css" media="screen">
+        <link rel="stylesheet" href="css/visual.css" id="editor_css">
     </head>
     <body>
+    <button type="button" name="button" onclick="ChordProEditor.switch_to_visual_css(true)" class="switcher visual">
+        See the result
+    </button>
+    <button type="button" name="button" onclick="ChordProEditor.switch_to_visual_css(false)" class="switcher editor">
+        Edit the song
+    </button>
 <textarea class="chordpro-song" spellcheck="true" lang="en">
 
 I want to go [G]back to my little grass shack

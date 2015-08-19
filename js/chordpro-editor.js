@@ -142,6 +142,14 @@ ChordProEditor = {
         };
         r.overrideMimeType("text/plain");
         r.send();
+    },
+
+    //switch css style
+    switch_to_visual_css: function(set_visual){
+        var active = (set_visual)?"visual":"editor";
+        var current_href = document.getElementById("editor_css").getAttribute('href');
+        var new_href = current_href.replace(/[^\/]+\.css$/, active + ".css");
+        document.getElementById("editor_css").setAttribute('href', new_href);
     }
 }
 
