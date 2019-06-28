@@ -1,3 +1,12 @@
+@media print{
+    .switcher{
+        display: none;
+    }
+}
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
 div.chordpro-song{
     margin:0;
     padding: 0 0 0 1em;
@@ -91,15 +100,16 @@ span.repeat:after{
     content: ")";
 }
 span.chord{
-    color: green;
-    line-height: 200%;
+    color: #2c57a0;
+    line-height: 250%;
     vertical-align: bottom;
     display: inline-block;
     position: relative;
-    top: -8px;
-    font-weight: normal;
+    top: -7px;
+    font-weight: 500;
     width: 0;
     white-space: nowrap;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 span.chord .control-chars:not(:first-of-type){
     display: inline;
